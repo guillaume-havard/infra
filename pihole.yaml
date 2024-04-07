@@ -1,0 +1,9 @@
+---
+- name: Pihole configuration
+  hosts: pihole
+  gather_facts: false
+  roles:
+    - static-ip
+    - pi-hole
+    # Install block list aggregator ?
+...

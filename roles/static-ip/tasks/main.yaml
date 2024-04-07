@@ -1,0 +1,18 @@
+---
+- name: Set Static IP
+  ansible.builtin.lineinfile:
+    path: /etc/dhcpcd.conf
+    regexp: "^{{ item.name }}"
+    line: "{{ item.name }}{{ item.value }}"
+    state: present
+  loop:
+    - name: interface
+      value: " {{ static_interface }}"
+    - name: static ip_address=
+      value: "{{ static_ip }}"
+    - name: static routers=
+      value: "{{ static_router }}"
+    - name: static domain_name_servers=
+      value: "{{ static_dns }}"
+  become: true
+...

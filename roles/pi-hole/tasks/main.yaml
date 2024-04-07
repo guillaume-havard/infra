@@ -1,0 +1,19 @@
+---
+- name: Get Pi-hole install script
+  ansible.builtin.get_url:
+    url: https://install.pi-hole.net
+    dest: /tmp/install_pi-hole.sh
+    mode: "644"
+
+# I need a "setupVars.conf" before launching an unattended install
+# https://discourse.pi-hole.net/t/what-is-setupvars-conf-and-how-do-i-use-it/3533
+
+- name: Installation warning
+  ansible.builtin.debug:
+    mesg: "Installation is still manual: sudo /tmp/install_pi-hole.sh"
+
+# - name: Launch Pi-Hole install script
+#   become: true
+#   ansible.builtin.shell:
+#     cmd: /tmp/install_pi-hole.sh
+...
